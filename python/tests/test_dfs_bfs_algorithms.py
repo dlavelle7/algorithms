@@ -1,6 +1,6 @@
 import unittest
-from dfs_bfs_algorithms import depth_first_search, breadth_first_search, \
-        create_balanced_tree, Node
+from python.dfs_bfs_algorithms import depth_first_search, \
+        breadth_first_search, create_balanced_tree, Node
 
 class TestDfsBfsAlgorithms(unittest.TestCase):
 
