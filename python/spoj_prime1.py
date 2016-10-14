@@ -21,6 +21,6 @@ def sieve_range(start, end):
 if __name__ == "__main__":
     no_of_tcs = int(sys.stdin.readline())
     for tc in xrange(no_of_tcs):
-        ranges = sys.stdin.readline().split()
-        sieve_range(int(ranges[0]), int(ranges[1]))
+        m, n = sys.stdin.readline().split()
+        sieve_range(int(m), int(n))
         print ""
