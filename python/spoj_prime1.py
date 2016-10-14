@@ -2,10 +2,6 @@
 import sys
 
 
-def main():
-    print 'hi'
-
-
 def sieve_range(start, end):
     if start < 2:
         start = 2
