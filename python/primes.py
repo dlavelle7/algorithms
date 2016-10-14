@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 """Prime numbers.
 
-Find all the prime numbers less than or equal to a given integer n
+Find all the prime numbers less than or equal to a given integer n.
+See sieve_of_eratosthenes.py for more prime number algorithms.
 """
 import time
 
+# TODO: Tidy up
 
 def time_me(prime_func):
     def wrapped_func(*args):
@@ -44,45 +46,12 @@ def better_simple_primes(n):
     return primes
 
 
-@time_me
-def sieve(n):
-    crossed = set()
-    # Start from the smallest prime numer 2 to n
-    for p in xrange(2, n + 1):
-        # Break if every pth number is crossed out already
-        if p * p > n:
-            break
-        # Iterate over non crossed out numbers
-        if p in crossed:
-            continue
-        # Cross out all numbers from 2p in steps of p (i.e. multiples of p)
-        for i in xrange(p * 2, n + 1, p):
-            crossed.add(i)
-
-    # Return non crossed out numbers (prime numbers)
-    return set(xrange(2, n + 1)) - crossed
-
-
-@time_me
-def optimized_sieve(n):
-    # Create a list of bools with indecies from 2 to n, set all true initally
-    crossed = [True for i in xrange(n + 1)]
-    # Start from the smallest prime numer 2 to n
-    for p in xrange(2, n + 1):
-        # If not crossed out already
-        if crossed[p]:
-            # Start enumerating the multiples of each prime p from p squared
-            for i in xrange(p**2, n + 1, p):
-                crossed[i] = False
-
-    return set(num for num in xrange(2, n + 1) if crossed[num])
-
-
+# TODO: Could import sieves here???
 # Test execution times
 #simple_primes(50000)
 #better_simple_primes(50000)
-sieve(1000000)
-optimized_sieve(1000000)
+#sieve(1000000)
+#optimized_sieve(1000000)
 
 ## Test simple_primes
 #assert set([2]) == simple_primes(2)
