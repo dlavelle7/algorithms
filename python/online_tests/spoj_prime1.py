@@ -2,8 +2,9 @@
 import sys
 
 
+# FIXME: Runtime error
 def sieve_range(start, end):
-    uncrossed = [True] * (n + 1)
+    uncrossed = [True] * (end + 1)
     uncrossed[0] = uncrossed[1] = False
     for p in xrange(2, end + 1):
         if p * p > end:
