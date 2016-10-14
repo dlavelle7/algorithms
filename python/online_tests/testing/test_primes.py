@@ -79,6 +79,35 @@ def optimized_sieve(n):
 
 
 @time_me
+def optimized_sieve_2(n):
+    # Create a list of bools with indecies from 2 to n, set all true initally
+    crossed = [True] * (n + 1)
+    # Start from the smallest prime numer 2 to n
+    for p in xrange(2, n + 1):
+        # If not crossed out already
+        if crossed[p]:
+            # Start enumerating the multiples of each prime p from p squared
+            for i in xrange(p**2, n + 1, p):
+                crossed[i] = False
+
+    return set(num for num in xrange(2, n + 1) if crossed[num])
+
+
+@time_me
+def sieve_range(start, end):
+    uncrossed = [True] * (end + 1)
+    uncrossed[0] = uncrossed[1] = False
+    for p in xrange(2, end + 1):
+        if p * p > end:
+            break
+        if uncrossed[p]:
+            for i in xrange(p**2, end + 1, p):
+                uncrossed[i] = False
+
+    return set(num for num in xrange(start, end + 1) if uncrossed[num])
+
+
+@time_me
 def foo(n):
     crossed = [True for i in xrange(n)]
 
@@ -88,8 +117,8 @@ def foo2(n):
     crossed = [True] * n
 
 
-foo(1000000000)
-foo2(1000000000)
+#foo(1000000000)
+#foo2(1000000000)
 
 
 # Test execution times
@@ -97,6 +126,8 @@ foo2(1000000000)
 #better_simple_primes(50000)
 #sieve(1000000)
 #optimized_sieve(1000000)
+#optimized_sieve_2(1000000)
+sieve_range(5000000, 10000000)
 
 ## Test simple_primes
 #assert set([2]) == simple_primes(2)
@@ -117,3 +148,10 @@ foo2(1000000000)
 #assert set([2]) == optimized_sieve(2)
 #assert set([2, 3, 5, 7, 11, 13, 17, 19, 23]) == optimized_sieve(23)
 #assert set([2, 3, 5, 7, 11, 13, 17, 19, 23, 29]) == optimized_sieve(30)
+
+# Test sieve range
+assert set([2]) == sieve_range(2, 2)
+assert set([2, 3, 5, 7, 11, 13, 17, 19, 23]) == sieve_range(0, 23)
+assert set([2, 3, 5, 7, 11, 13, 17, 19, 23, 29]) == sieve_range(1, 30)
+assert set([11, 13, 17, 19, 23, 29]) == sieve_range(11, 29)
+assert set([7, 11, 13, 17, 19, 23, 29]) == sieve_range(6, 30)

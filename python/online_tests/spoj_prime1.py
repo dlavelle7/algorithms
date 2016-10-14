@@ -3,9 +3,8 @@ import sys
 
 
 def sieve_range(start, end):
-    if start < 2:
-        start = 2
-    uncrossed = [True for i in xrange(end + 1)]
+    uncrossed = [True] * (n + 1)
+    uncrossed[0] = uncrossed[1] = False
     for p in xrange(2, end + 1):
         if p * p > end:
             break
