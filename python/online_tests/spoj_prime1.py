@@ -21,6 +21,8 @@ def sieve_range(start, end):
 if __name__ == "__main__":
     no_of_tcs = int(sys.stdin.readline())
     for tc in xrange(no_of_tcs):
+        # TODO: Could find max of all tc ranges, find all the primes from
+        # 2 - max, then all the other tcs are subsets of that. No need to redo???
         m, n = sys.stdin.readline().split()
         sieve_range(int(m), int(n))
         print ""
