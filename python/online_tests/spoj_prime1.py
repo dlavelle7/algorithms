@@ -10,14 +10,17 @@ Output
 For every test case print all prime numbers p such that m <= p <= n, one number
 per line, test cases separated by an empty line.
 """
-import sys
-import time
+import time  # TODO: Remove XXX
+
+from sys import stdin
+from array import array
 
 
 def sieve(end):
     # FIXME: Given the max size of m <= 1bln, this is too much memory
-    uncrossed = [True for i in xrange(end + 1)]
-    uncrossed[0] = uncrossed[1] = False
+    # Create compact array of unsigned integers of size 1 byte
+    uncrossed = array('B', [1 for i in xrange(end + 1)])
+    uncrossed[0] = uncrossed[1] = 0  # True == 1, False == 0
     for p in xrange(2, end + 1):
         if p * p > end:
             break
@@ -29,12 +32,12 @@ def sieve(end):
 
 if __name__ == "__main__":
     start = time.time()  # TODO: Remove XXX
-    no_of_tcs = int(sys.stdin.readline())
+    no_of_tcs = int(stdin.readline())
     # Find the biggest n
     ns = set()
     test_cases = []
     for tc in xrange(no_of_tcs):
-        m, n = sys.stdin.readline().split()
+        m, n = stdin.readline().split()
         ns.add(int(n))
         test_cases.append((int(m), int(n)))
     big_n = max(ns)
