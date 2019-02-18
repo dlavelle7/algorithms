@@ -1,17 +1,5 @@
 #!/usr/bin/env python
 
-def main():
-    test_list = [2, 4, 5, 3, 6, 1]
-    assert bubble_sort(test_list) == sorted(test_list)
-    test_list = [2]
-    assert bubble_sort(test_list) == sorted(test_list)
-    test_list = []
-    assert bubble_sort(test_list) == sorted(test_list)
-    test_list = [2, 4, 5, 3, 2, 1]
-    assert bubble_sort(test_list) == sorted(test_list)
-    test_list = [2, -4, -5, 3, -3, 1]
-    assert bubble_sort(test_list) == sorted(test_list)
-
 def bubble_sort(sequence):
     unsorted = True
     while unsorted: # loop until we make one pass with no swaps
@@ -24,4 +12,13 @@ def bubble_sort(sequence):
     return sequence
 
 if __name__ == "__main__":
-    main()
+    test_list = [2, 4, 5, 3, 6, 1]
+    assert bubble_sort(test_list) == sorted(test_list)
+    test_list = [2]
+    assert bubble_sort(test_list) == sorted(test_list)
+    test_list = []
+    assert bubble_sort(test_list) == sorted(test_list)
+    test_list = [2, 4, 5, 3, 2, 1]
+    assert bubble_sort(test_list) == sorted(test_list)
+    test_list = [2, -4, -5, 3, -3, 1]
+    assert bubble_sort(test_list) == sorted(test_list)
