@@ -12,9 +12,12 @@ def bubble_sort(sequence):
     return sequence
 
 if __name__ == "__main__":
+    # Test cases
     test_list = [2, 4, 5, 3, 6, 1]
     assert bubble_sort(test_list) == sorted(test_list)
     test_list = [2]
+    assert bubble_sort(test_list) == sorted(test_list)
+    test_list = [3, 4]
     assert bubble_sort(test_list) == sorted(test_list)
     test_list = []
     assert bubble_sort(test_list) == sorted(test_list)
