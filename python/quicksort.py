@@ -60,22 +60,15 @@ def partition(a_list, pivot_point, right):
 
 
 # Testing
-a_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
-quicksort(a_list)
-assert a_list == [17, 20, 26, 31, 44, 54, 55, 77, 93]
+def _assert_sorts_list(test_list):
+    """Assert the list has been correctly sorted by the algorithm."""
+    sorted_list = sorted(test_list)
+    quicksort(test_list)
+    assert test_list == sorted_list
 
-a_list = []  # empty list is sorted
-quicksort(a_list)
-assert a_list == []
 
-a_list = [1]  # single element list is sorted
-quicksort(a_list)
-assert a_list == [1]
-
-a_list = [1, 2, 3]  # already sorted list
-quicksort(a_list)
-assert a_list == [1, 2, 3]
-
-a_list = [9, 9, 3, 2, 4, 8, 7, 6, 10, 1, 2, 6, 6, 7, 5, 4, 0, 8]
-quicksort(a_list)
-assert a_list == [0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 6, 7, 7, 8, 8, 9, 9, 10]
+_assert_sorts_list([])
+_assert_sorts_list([2])
+_assert_sorts_list([3, 4])
+_assert_sorts_list([2, 4, 5, 3, 6, 1, 100, 80])
+_assert_sorts_list([2, -4, -5, 3, -3, 1, -200, 101])
