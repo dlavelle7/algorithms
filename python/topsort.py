@@ -34,11 +34,12 @@ def topological_sort(graph):
         topsorted.append(node)
 
         for dependency in node.requires:
-            incoming[dependency] -= 1 # Decrement no of incoming edges
-            if incoming[dependency] == 0: # If that was the last one, its next
+            incoming[dependency] -= 1  # Decrement no of incoming edges
+            if incoming[dependency] == 0:  # If that was the last one, its next
                 edgeless_nodes.append(dependency)
 
     return topsorted
+
 
 def create_directed_graph():
     node1 = Node()
@@ -53,6 +54,7 @@ def create_directed_graph():
     node5.requires.add(node4)
 
     return set([node1, node2, node3, node4, node5])
+
 
 def render_graph(graph):
     dot = Digraph('directed_graph')

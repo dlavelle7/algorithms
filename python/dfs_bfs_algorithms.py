@@ -34,6 +34,7 @@ def depth_first_search(root, find_node):
 
     return recursive_search(root)
 
+
 def breadth_first_search(root, find_node):
     queue = deque()
     queue.append(root)
@@ -45,6 +46,7 @@ def breadth_first_search(root, find_node):
         for child in node.children:
             queue.append(child)
 
+
 def create_balanced_tree(levels=3, node=None):
     if not node:
         Node.count = 1
@@ -54,6 +56,7 @@ def create_balanced_tree(levels=3, node=None):
         for child in node.children:
             create_balanced_tree(levels - 1, child)
     return node
+
 
 def render_graph():
     root = create_balanced_tree()
