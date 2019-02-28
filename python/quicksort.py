@@ -1,6 +1,6 @@
 """Quicksort is an efficient 'divide and conquer' sorting algorithm.
 
-On average, quicksort has takes O(n log n) comparisons to sort n items. It's
+On average, quicksort takes O(n log n) comparisons to sort n items. It's
 not a stable sort, meaning that the order of equal elements is not preserved.
 Quick sort is memory efficient as it sorts the array 'in place'
 (unlike mergesort).

@@ -3,10 +3,12 @@
 
 Finds the position of a given target in a sorted array.
 Binary search has a worst case and average performance of O(log n).
+Efficient for searching large datasets.
 
-Each operation compares the middle value of the list with the target, the half
-where the target cannot be is discarded and this operation is repeated until
-the middle value equals the target or not.
+Algorithm steps:
+ 1 compare the middle value of the list with the target
+ 2 discard the half of the list where the target cannot be
+ 3 repeat steps 1 & 2 until the middle value equals the target or not
 """
 
 
