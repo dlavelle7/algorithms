@@ -1,3 +1,20 @@
+"""Topological sort.
+
+Performs an ordering sort on an acyclic directed graph (DAG).
+
+Algorithm steps:
+ - count the number of incoming edges that each node has
+ - start with a node that has no incoming edges (it has no requirements)
+ - as this node is next, remove the edges between it and it's dependencies
+ - recount incoming edges of the dependencies (as they've had edges removed)
+ - if any of the dependencies have no incoming edges, they can go next
+
+e.g. "Washing Analogy"
+
+Requirements:
+ - sudo apt-get install graphviz
+ - pip install graphviz==0.10.1
+"""
 from graphviz import Digraph
 from collections import defaultdict
 
@@ -33,8 +50,9 @@ def topological_sort(graph):
         node = edgeless_nodes.pop()
         topsorted.append(node)
 
+        # remove the edge between the next node and it's dependencies
         for dependency in node.requires:
-            incoming[dependency] -= 1  # Decrement no of incoming edges
+            incoming[dependency] -= 1
             if incoming[dependency] == 0:  # If that was the last one, its next
                 edgeless_nodes.append(dependency)
 

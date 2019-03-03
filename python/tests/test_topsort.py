@@ -1,5 +1,5 @@
 import unittest
-from python.topsort import topological_sort, create_directed_graph
+from python.topological_sort import topological_sort, create_directed_graph
 
 
 class TestTopsort(unittest.TestCase):
