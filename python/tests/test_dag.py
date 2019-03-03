@@ -8,3 +8,7 @@ class TestDirectedAcyclicGraph(TestCase):
     def test_find_path_01(self):
         self.assertListEqual(['A', 'B', 'D'],
                              find_paths(acyclic_graph, 'A', 'D'))
+
+    def test_find_path_02(self):
+        self.assertListEqual(['E', 'F', 'C', 'D'],
+                             find_paths(acyclic_graph, 'E', 'D'))
