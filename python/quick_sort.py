@@ -1,6 +1,6 @@
 """Quicksort is an efficient 'divide and conquer' sorting algorithm.
 
-On average, quicksort takes O(n log n) comparisons to sort n items. It's
+On average, quick sort takes O(n log n) comparisons to sort n items. It's
 not a stable sort, meaning that the order of equal elements is not preserved.
 Quick sort is memory efficient as it sorts the array 'in place'
 (unlike mergesort).
@@ -14,7 +14,7 @@ Algorithm steps:
 """
 
 
-def quicksort(a_list):
+def quick_sort(a_list):
     # Use the first element in the list as the pivot point
     recursive_quicksort(a_list, 0, len(a_list) - 1)
 
@@ -57,18 +57,3 @@ def partition(a_list, pivot_point, right):
     a_list[pivot_point], a_list[right] = a_list[right], a_list[pivot_point]
 
     return right
-
-
-# Testing
-def _assert_sorts_list(test_list):
-    """Assert the list has been correctly sorted by the algorithm."""
-    sorted_list = sorted(test_list)
-    quicksort(test_list)
-    assert test_list == sorted_list
-
-
-_assert_sorts_list([])
-_assert_sorts_list([2])
-_assert_sorts_list([3, 4])
-_assert_sorts_list([2, 4, 5, 3, 6, 1, 100, 80])
-_assert_sorts_list([2, -4, -5, 3, -3, 1, -200, 101])

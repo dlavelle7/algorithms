@@ -27,8 +27,3 @@ def insertion_sort(a_list):
             position -= 1
         # position found for current value, stick it back in
         a_list[position] = current_value
-
-
-test_list = [5, 1, 3, 4, 2]
-insertion_sort(test_list)
-print(test_list)
