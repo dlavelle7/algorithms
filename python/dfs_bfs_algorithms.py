@@ -47,27 +47,27 @@ def breadth_first_search(root, find_node):
             queue.append(child)
 
 
-def create_balanced_tree(levels=3, node=None):
+def create_tree(levels=3, node=None):
     if not node:
         Node.count = 1
         node = Node()
     if levels > 0:
         node.add_children(set([Node(), Node()]))
         for child in node.children:
-            create_balanced_tree(levels - 1, child)
+            create_tree(levels - 1, child)
     return node
 
 
-def render_graph():
-    root = create_balanced_tree()
+def render_tree():
+    root = create_tree()
     dot = Digraph('Node_tree')
 
-    def construct_graph(node):
+    def construct_tree(node):
         dot.node(node.name)
         for child in node.children:
             dot.node(child.name)
             dot.edge(node.name, child.name)
-            construct_graph(child)
+            construct_tree(child)
 
-    construct_graph(root)
+    construct_tree(root)
     dot.render()
