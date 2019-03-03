@@ -1,5 +1,7 @@
 """Directed Acyclic Graphs (DAG).
 
+[WIP]
+
 Graphs are a network of nodes connected by edges. In directed graphs, these
 edges (or arcs) have a direction.
 
@@ -20,8 +22,8 @@ acyclic_graph = {
 }
 
 
-# TODO: Find all paths from one node to another
-def find_paths(graph, start_node, end_node, path=[]):
+def find_path(graph, start_node, end_node, path=[]):
+    """Find any path from start node to end node."""
     path = path + [start_node]  # use assignment (not append())
 
     if start_node == end_node:
@@ -30,17 +32,17 @@ def find_paths(graph, start_node, end_node, path=[]):
 
     for node in graph[start_node]:
         if node not in path:
-            newpath = find_paths(graph, node, end_node, path)
+            newpath = find_path(graph, node, end_node, path)
             if newpath is not None:
                 return newpath
 
     # . . . or until you hit a dead end and haven't reached end_node,
-    # then discard this copy of "path" with the dead end node's parent
+    # then discard this copy of "path" with the dead end node
     return None
 
 
+# TODO: Find all paths from one node to another
 
 # TODO: Find the shortest path from one node to another
 
 # TODO: Test if this graph is an acyclic graph or not
-#def is_acyclic_graph(graph):
