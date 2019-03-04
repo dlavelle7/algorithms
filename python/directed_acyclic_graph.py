@@ -11,7 +11,7 @@ to that node again. Acyclic graphs have a topological ordering.
 
 
 # Nodes are the keys, and directed edges are the values
-acyclic_graph = {
+directed_graph = {
     'A': ['B', 'C'],
     'B': ['G', 'D', 'C'],
     'C': ['D'],
