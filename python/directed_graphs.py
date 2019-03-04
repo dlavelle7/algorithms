@@ -55,13 +55,13 @@ def find_path(graph, start_node, end_node, path=[]):
 def has_cycles(graph):
     """A directed graph is acyclic if it can be topologically sorted."""
     # count the number of incoming edges each node has
-    incoming = defaultdict(int)
+    incoming_edges = defaultdict(int)
     for children in graph.values():
         for child in children:
-            incoming[child] += 1
+            incoming_edges[child] += 1
 
     # start with a node that has no incoming edges
-    edgeless_nodes = [node for node in graph if node not in incoming]
+    edgeless_nodes = [node for node in graph if node not in incoming_edges]
 
     topsorted = []
     while edgeless_nodes:
@@ -70,13 +70,14 @@ def has_cycles(graph):
 
         # remove the edges for this node
         for dependency in graph[node]:
-            incoming[dependency] -= 1
+            incoming_edges[dependency] -= 1
             # check if this node could go next
-            if incoming[dependency] == 0:
+            if incoming_edges[dependency] == 0:
                 edgeless_nodes.append(dependency)
+                incoming_edges.pop(dependency)
 
     # if there are any incoming edges left, the graph has cycles
-    edges = any(incoming_count > 0 for incoming_count in incoming.values())
-    if not edges:
+    if incoming_edges:
         print(f"DAG Topsort order: {topsorted}")
-    return edges
+        return True
+    return False
