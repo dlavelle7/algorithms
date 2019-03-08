@@ -1,5 +1,7 @@
 """Binary Search Tree.
 
+[WIP]
+
 A Tree is hierarchical data structure with nodes and edges, like a graph, but
 unlike a graph, cycles cannot exist in a tree.
 
@@ -10,6 +12,7 @@ A Binary Search Tree has the following properties:
  - the right child's value is greater than it's parent's node value
 """
 from random import randint
+from graphviz import Digraph
 
 
 class Node:
@@ -20,13 +23,17 @@ class Node:
         self.right = None
 
     def __repr__(self):
-        return f"Node {self.value}"
+        return self.name
 
     def __gt__(self, node):
         return self.value > node.value
 
     def __lt__(self, node):
         return self.value < node.value
+
+    @property
+    def name(self):
+        return f"Node {self.value}"
 
 
 class BinarySearchTree:
@@ -52,8 +59,32 @@ class BinarySearchTree:
             else:
                 self._add(new_node, existing_node.left)
 
+# TODO: Search for value method
 
-bs_tree = BinarySearchTree()
+def create_binary_search_tree():
+    bs_tree = BinarySearchTree()
+    for _ in range(20):
+        bs_tree.add(Node(randint(1, 100)))
+    return bs_tree
 
-for _ in range(10):
-    bs_tree.add(Node(randint(1, 30)))
+
+def render_binary_search_tree():
+    dot = Digraph("Binary Search Tree")
+
+    def draw_node(node):
+        dot.node = node.name
+        if node.left is not None:
+            dot.edge(node.name, node.left.name)
+            draw_node(node.left)
+        if node.right is not None:
+            dot.edge(node.name, node.right.name)
+            draw_node(node.right)
+
+    bs_tree = create_binary_search_tree()
+    draw_node(bs_tree.root)
+
+    print(dot.source)
+    dot.render()
+
+
+render_binary_search_tree()
