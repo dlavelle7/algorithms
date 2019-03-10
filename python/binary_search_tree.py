@@ -1,7 +1,5 @@
 """Binary Search Tree.
 
-[WIP]
-
 A Tree is hierarchical data structure with nodes and edges, like a graph, but
 unlike a graph, cycles cannot exist in a tree.
 
@@ -13,6 +11,7 @@ A Binary Search Tree has the following properties:
 """
 from random import randint
 from graphviz import Digraph
+from collections import deque
 
 
 class Node:
@@ -52,6 +51,8 @@ class BinarySearchTree:
                 existing_node.left = Node(value)
             else:
                 self._add(value, existing_node.left)
+        else:
+            return  # Don't allow duplicates in this binary search tree
 
     def __contains__(self, value):
         return self._contains(value, self.root)
@@ -67,10 +68,31 @@ class BinarySearchTree:
             return self._contains(value, search_node.left)
         return False
 
-    def height(self):
-        # TODO: Determine the height of tree (BFS)
-        raise NotImplementedError("Not yet")
 
+def count_tree_nodes(bs_tree):
+    """
+    Find the number of nodes in a given tree using the Breadth First Search
+    algorithm (as opposed to tracking the count in the tree class).
+    """
+    count = 0
+    queue = deque([bs_tree.root]) if bs_tree.root is not None else deque()
+    while queue:
+        node = queue.popleft()
+        count += 1
+        if node.left is not None:
+            queue.append(node.left)
+        if node.right is not None:
+            queue.append(node.right)
+    return count
+
+
+def find_tree_height(bs_tree):
+    """
+    Find the longest path from the root to a leaf using the
+    Depth First Search algorithm, to count the levels.
+    """
+    height = 0
+    return height
 
 def create_binary_search_tree():
     bs_tree = BinarySearchTree()
