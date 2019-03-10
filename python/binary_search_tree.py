@@ -88,8 +88,8 @@ def count_tree_nodes(bs_tree):
 
 def find_tree_height(bs_tree):
     """
-    Find the longest path from the root to a leaf using the
-    Depth First Search algorithm, to count the levels.
+    Find the longest path from the root to a leaf using the Depth First Search
+    algorithm (as opposed to tracking the height in the tree class).
     """
     max_height = 0
 
@@ -102,8 +102,7 @@ def find_tree_height(bs_tree):
         print(f"Found new node ({node}), "
               f"incrementing height to {branch_height}")
 
-        nonlocal max_height
-        print(f"Using nonlocal max_height: {max_height}")
+        nonlocal max_height  # refers to the enclosing function's locals()
 
         if node.left is None and node.right is None:
             print(f"Reached a leaf node ({node}), "
