@@ -35,37 +35,41 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
 
-    def add(self, node):
+    def add(self, value):
         if self.root is None:
-            self.root = node
+            self.root = Node(value)
         else:
-            self._add(node, self.root)
+            self._add(value, self.root)
 
-    def _add(self, new_node, existing_node):
-        if new_node.value > existing_node.value:
+    def _add(self, value, existing_node):
+        if value > existing_node.value:
             if existing_node.right is None:
-                existing_node.right = new_node
+                existing_node.right = Node(value)
             else:
-                self._add(new_node, existing_node.right)
-        elif new_node.value < existing_node.value:
+                self._add(value, existing_node.right)
+        elif value < existing_node.value:
             if existing_node.left is None:
-                existing_node.left = new_node
+                existing_node.left = Node(value)
             else:
-                self._add(new_node, existing_node.left)
+                self._add(value, existing_node.left)
 
-    def find(self, value):
-        return self._find(value, self.root)
+    def __contains__(self, value):
+        if self.root is not None:
+            return self._contains(value, self.root)
+        return False
 
-    def _find(self, value, search_node):
-        # TODO: Find path?
-        # TODO: Find out how my levels down it was
+    def _contains(self, value, search_node):
         if value == search_node.value:
-            return search_node
+            return True
         elif value > search_node.value and search_node.right is not None:
-            return self._find(value, search_node.right)
+            return self._contains(value, search_node.right)
         elif value < search_node.value and search_node.left is not None:
-            return self._find(value, search_node.left)
+            return self._contains(value, search_node.left)
+        return False
 
+    def height(self):
+        # TODO: Determine the height of tree (BFS)
+        raise NotImplementedError("Not yet")
 
 def create_binary_search_tree():
     bs_tree = BinarySearchTree()
