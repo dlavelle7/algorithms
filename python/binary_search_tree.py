@@ -93,7 +93,7 @@ def find_tree_height(bs_tree):
     """
     max_height = 0
 
-    def find_branch_height(node, max_height, branch_height=None):
+    def find_branch_height(node, branch_height=None):
         if branch_height is None:
             branch_height = 0
             print("Starting new recursive search")
@@ -102,6 +102,9 @@ def find_tree_height(bs_tree):
             branch_height += 1
             print(f"Found new node ({node}), "
                   f"incrementing height to {branch_height}")
+
+        nonlocal max_height
+        print(f"Using nonlocal max_height: {max_height}")
 
         if node.left is None and node.right is None:
             print(f"Reached a leaf node ({node}), "
@@ -115,9 +118,9 @@ def find_tree_height(bs_tree):
         else:
             for child in [node.left, node.right]:
                 if child is not None:
-                    find_branch_height(child, max_height, branch_height)
+                    find_branch_height(child, branch_height)
 
-    find_branch_height(bs_tree.root, max_height)
+    find_branch_height(bs_tree.root)
     return max_height
 
 
