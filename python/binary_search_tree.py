@@ -97,11 +97,10 @@ def find_tree_height(bs_tree):
         if branch_height is None:
             branch_height = 0
             print("Starting new recursive search")
-        # TODO: Refactor node is None and child is None
-        if node is not None:
-            branch_height += 1
-            print(f"Found new node ({node}), "
-                  f"incrementing height to {branch_height}")
+
+        branch_height += 1
+        print(f"Found new node ({node}), "
+              f"incrementing height to {branch_height}")
 
         nonlocal max_height
         print(f"Using nonlocal max_height: {max_height}")
@@ -112,7 +111,6 @@ def find_tree_height(bs_tree):
                   f"current max height: {max_height}")
             # reached the end of the line, check if this branch is longest
             if branch_height > max_height:
-                # FIXME: nonlocal assignment i think
                 max_height = branch_height
                 print(f"Set new max height {max_height}")
         else:
@@ -120,7 +118,8 @@ def find_tree_height(bs_tree):
                 if child is not None:
                     find_branch_height(child, branch_height)
 
-    find_branch_height(bs_tree.root)
+    if bs_tree.root is not None:
+        find_branch_height(bs_tree.root)
     return max_height
 
 
