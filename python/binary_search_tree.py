@@ -91,8 +91,35 @@ def find_tree_height(bs_tree):
     Find the longest path from the root to a leaf using the
     Depth First Search algorithm, to count the levels.
     """
-    height = 0
-    return height
+    max_height = 0
+
+    def find_branch_height(node, max_height, branch_height=None):
+        if branch_height is None:
+            branch_height = 0
+            print("Starting new recursive search")
+        # TODO: Refactor node is None and child is None
+        if node is not None:
+            branch_height += 1
+            print(f"Found new node ({node}), "
+                  f"incrementing height to {branch_height}")
+
+        if node.left is None and node.right is None:
+            print(f"Reached a leaf node ({node}), "
+                  f"branch height: {branch_height}, "
+                  f"current max height: {max_height}")
+            # reached the end of the line, check if this branch is longest
+            if branch_height > max_height:
+                # FIXME: nonlocal assignment i think
+                max_height = branch_height
+                print(f"Set new max height {max_height}")
+        else:
+            for child in [node.left, node.right]:
+                if child is not None:
+                    find_branch_height(child, max_height, branch_height)
+
+    find_branch_height(bs_tree.root, max_height)
+    return max_height
+
 
 def create_binary_search_tree():
     bs_tree = BinarySearchTree()

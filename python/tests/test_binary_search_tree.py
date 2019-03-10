@@ -31,10 +31,8 @@ class TestBinarySearchTree(TestCase):
         # test count
         self.assertEqual(4, count_tree_nodes(bs_tree))
 
-        # TODO:
         # test height
-        #import ipdb; ipdb.set_trace();  # XXX Breakpoint
-        #self.assertEqual(3, find_tree_height(bs_tree))
+        self.assertEqual(3, find_tree_height(bs_tree))
 
     def test_empty_binary_search_tree(self):
         bs_tree = BinarySearchTree()
