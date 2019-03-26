@@ -15,23 +15,20 @@ Algorithm steps:
 def binary_search(number, sorted_list):
     left = 0
     right = len(sorted_list) - 1
-    mid = (right + left) // 2  # floor division
-    while left <= right and sorted_list[mid] != number:
-        if number < sorted_list[mid]:
+    while left <= right:
+        mid = (right + left) // 2  # floor division
+        if sorted_list[mid] == number:
+            return number
+        elif number < sorted_list[mid]:
             right = mid - 1
         else:
             left = mid + 1
-        mid = (right + left) // 2  # floor division
-    return mid if sorted_list[mid] == number else None
 
 
 if __name__ == "__main__":
-    sorted_list = range(10)
-    assert binary_search(0, sorted_list) == 0
-    assert binary_search(9, sorted_list) == 9
-    assert binary_search(3, sorted_list) == 3
-    assert binary_search(4, sorted_list) == 4
-    assert binary_search(5, sorted_list) == 5
-    assert binary_search(-1, sorted_list) is None
-    sorted_list = range(3)
-    assert binary_search(1, sorted_list) == 1
+    assert binary_search(4, [0, 1, 3, 4]) == 4
+    assert binary_search(3, [1, 3, 4]) == 3
+    assert binary_search(6, [1, 3, 4]) is None
+    assert binary_search(-2, [-3, -2]) == -2
+    assert binary_search(6, [6]) == 6
+    assert binary_search(6, []) is None
